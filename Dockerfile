@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:1.4.5
+FROM hashicorp/terraform:0.11.15
 
 LABEL repository="https://github.com/andresb39/terraform-pr-commenter" \
     homepage="https://github.com/andresb39/terraform-pr-commenter" \
@@ -6,7 +6,7 @@ LABEL repository="https://github.com/andresb39/terraform-pr-commenter" \
     com.github.actions.name="Terraform PR Commenter" \
     com.github.actions.description="Adds opinionated comments to a PR from Terraform plan" \
     com.github.actions.icon="git-pull-request" \
-    com.github.actions.color="purple"
+    com.github.actions.color="blue"
 
 RUN apk add --no-cache -q \
     bash \
