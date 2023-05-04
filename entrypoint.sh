@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # Autor: @andresb39
 # Date: Marzo 2023
 # TODO: This script should run terraform on commit modified folders
@@ -16,7 +15,7 @@ last_tag=$(git describe --abbrev=0 --tags)
 home_dir=$(pwd)
 
 # Get the names of modified  folders.
-diff=$(git diff --name-only "$last_tag" HEAD -- '*.tf' | xargs -I{} dirname "{}" | sort -u | sed '/^\./d')
+diff=$( git diff --name-only $last_tag HEAD -- '*.tf' | xargs -I{} dirname "{}" | sort -u | sed '/^\./d')
 
 #############
 # Validations
