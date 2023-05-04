@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Autor: @andresb39
 # Date: Marzo 2023
 # TODO: This script should run terraform on commit modified folders
