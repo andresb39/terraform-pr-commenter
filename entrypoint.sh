@@ -16,7 +16,7 @@ last_tag=$(git describe --abbrev=0 --tags)
 home_dir=$(pwd)
 
 # Get the names of modified  folders.
-diff=$( git diff --name-only $last_tag HEAD -- '*.tf' | xargs -I{} dirname "{}" | sort -u | sed '/^\./d' | grep -v _main)
+diff=$( git diff --name-only $last_tag HEAD -- '*.tf' | xargs -I{} dirname "{}" | sort -u | sed '/^\./d')
 
 #############
 # Validations
