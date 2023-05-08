@@ -27,7 +27,7 @@ if [[ "$PR_NUMBER" == "null" ]]; then
   exit 0
 fi
 
-if [[ -z "$GITHUB_TOKEN" ]]; then
+if [[ -z "$token_github" ]]; then
   echo "GITHUB_TOKEN environment variable missing."
   exit 1
 fi
@@ -43,7 +43,7 @@ fi
 COLOURISE=${HIGHLIGHT_CHANGES:-true}
 
 ACCEPT_HEADER="Accept: application/vnd.github.v3+json"
-AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
+AUTH_HEADER="Authorization: token $token_github"
 CONTENT_HEADER="Content-Type: application/json"
 
 PR_COMMENTS_URL=$(jq -r ".pull_request.comments_url" "$GITHUB_EVENT_PATH")

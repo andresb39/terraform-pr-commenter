@@ -1,4 +1,4 @@
-name: 'Terraform pull request commenter'
+name: 'Terraform PR Commenter Action'
 description: 'Adds opinionated comments to a PR from Terraform plan'
 author: '@andresb39'
 branding:
