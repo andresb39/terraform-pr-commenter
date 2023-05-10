@@ -6,7 +6,7 @@
 # exit on error
 set -o errexit
 
-git config --global --add safe.directory '*'
+git config --global safe.directory '*'
 
 # Fetch all git branches.
 git fetch --prune --tags
@@ -18,7 +18,7 @@ last_tag=$(git describe --abbrev=0 --tags)
 home_dir=$(pwd)
 
 # Get the names of modified  folders.
-diff=$( git diff --name-only $last_tag HEAD -- '*.tf' | xargs -I{} dirname "{}" | sort -u | sed '/^\./d'| cut -d/ -f 1-2)
+diff=$( git diff --name-only $last_tag HEAD -- '*.tf' | xargs -I{} dirname "{}" | sort -u | sed '/^\./d'| cut -d/ -f 1-2 | grep -v '_main')
 
 #############
 # Validations
@@ -45,7 +45,7 @@ fi
 COLOURISE=${HIGHLIGHT_CHANGES:-true}
 
 ACCEPT_HEADER="Accept: application/vnd.github.v3+json"
-AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
+AUTH_HEADER="Authorization: token $token_github"
 CONTENT_HEADER="Content-Type: application/json"
 
 PR_COMMENTS_URL=$(jq -r ".pull_request.comments_url" "$GITHUB_EVENT_PATH")
@@ -54,6 +54,9 @@ PR_COMMENT_URI=$(jq -r ".repository.issue_comment_url" "$GITHUB_EVENT_PATH" | se
 for folder in $diff; do
 
   cd "$folder"
+
+  ls -la
+  terraform show tfplan -no-color
 
   DIRECTORY=$(basename "$folder")
 
@@ -97,7 +100,7 @@ $CLEAN_PLAN
   else
     echo "Plan is empty"
   fi
-  
+
   # Return to home directory
   cd "$home_dir"
 
