@@ -29,7 +29,7 @@ if [[ "$PR_NUMBER" == "null" ]]; then
   exit 0
 fi
 
-if [[ -z "$GITHUB_TOKEN" ]]; then
+if [[ -z "$token_github" ]]; then
   echo "GITHUB_TOKEN environment variable missing."
   exit 1
 fi
