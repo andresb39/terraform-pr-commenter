@@ -18,7 +18,7 @@ last_tag=$(git describe --abbrev=0 --tags)
 home_dir=$(pwd)
 
 # Get the names of modified  folders.
-diff=$( git diff --name-only $last_tag HEAD -- '*.tf' | xargs -I{} dirname "{}" | sort -u | sed '/^\./d'| cut -d/ -f 1-2 | grep -v '_main')
+diff=$( git diff --name-only $last_tag HEAD -- '*.tf' | xargs -I{} dirname "{}" | sort -u | sed '/^\./d'| cut -d/ -f 1-2 )
 
 #############
 # Validations
@@ -54,9 +54,6 @@ PR_COMMENT_URI=$(jq -r ".repository.issue_comment_url" "$GITHUB_EVENT_PATH" | se
 for folder in $diff; do
 
   cd "$folder"
-
-  ls -la
-  terraform show tfplan -no-color
 
   DIRECTORY=$(basename "$folder")
 
