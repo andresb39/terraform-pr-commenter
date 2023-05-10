@@ -6,6 +6,8 @@
 # exit on error
 set -o errexit
 
+git config --global --add safe.directory '*'
+
 # Fetch all git branches.
 git fetch --prune --tags
 
